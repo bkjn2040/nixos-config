@@ -37,6 +37,21 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  i18n.extraLocales = [ "ko_KR.UTF-8/UTF-8" ];
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-hangul
+        fcitx5-gtk
+      ];
+    };
+    # ibus.engines = with pkgs.ibus-engines; [ hangul ];
+  };
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
