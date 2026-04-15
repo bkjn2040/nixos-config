@@ -58,6 +58,19 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      nanum
+    ];
+    fontconfig.defaultFonts = {
+      serif = [ "NanumMyeongjo" ]; # "Noto Serif CJK KR"
+      sansSerif = [ "NanumGothic" ]; # "Noto Sans CJK KR"
+      monospace = [ "JetBrainsMono Nerd Font Mono" ]; # "NanumgothicCoding"
+    };
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
