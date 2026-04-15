@@ -69,6 +69,11 @@
   #  wget
   ];
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   programs.git.enable = true;
 
   programs.hyprland.enable = true;
