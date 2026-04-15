@@ -13,7 +13,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "thinkpad"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -24,7 +24,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Seoul";
+  time.timeZone = "Europe/Amsterdam";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -69,9 +69,16 @@
   #  wget
   ];
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   programs.git.enable = true;
 
   programs.hyprland.enable = true;
+
+  services.tailscale.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
