@@ -1,67 +1,31 @@
 {
-  description = "NixOS Configuraiton";
+  description = "NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixCats.url = ./config;
   };
 
-  outputs = { self, nixpkgs, lanzaboote, ... }@inputs: {
-    nixosConfigurations = {
-      thinkpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
+  outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      mkHost = hostName:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/${hostName}/configuration.nix ];
         };
-        modules = [
-          ./hosts/thinkpad/configuration.nix
-
-          lanzaboote.nixosModules.lanzaboote
-
-          ({ pkgs, lib, ... }: {
-            environment.systemPackages = [
-              pkgs.sbctl
-            ];
-
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/var/lib/sbctl";
-            };
-          })
-        ];
-      };
-      workstation = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./hosts/workstation/configuration.nix
-
-          lanzaboote.nixosModules.lanzaboote
-
-          ({ pkgs, lib, ... }: {
-            environment.systemPackages = [
-              pkgs.sbctl
-            ];
-
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/var/lib/sbctl";
-            };
-          })
-        ];
+    in
+    {
+      nixosConfigurations = {
+        thinkpad = mkHost "thinkpad";
+        workstation = mkHost "workstation";
       };
     };
-  };
 }
