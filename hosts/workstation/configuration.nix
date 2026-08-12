@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports =
@@ -16,6 +16,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
+  };
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
@@ -136,6 +144,36 @@
 
   services.tailscale.enable = true;
 
+  services.resolved = {
+    enable = true;
+  };
+
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+
+    host = "0.0.0.0";
+    port = 11434;
+  };
+
+  systemd.services.ollama-prime-qwen = {
+    description = "Pre-load Qwen2.5 model into Ollama";
+    after = [ "ollama.service" ];
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      # Wait until the Ollama API port is open and active
+      while ! ${pkgs.curl}/bin/curl -s http://127.0.0 > /dev/null; do
+        sleep 2
+      done
+      # Pull the Qwen 2.5 model (defaults to the 7B parameter version)
+      ${config.services.ollama.package}/bin/ollama pull qwen2.5:14b
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
@@ -183,7 +221,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 11434 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
