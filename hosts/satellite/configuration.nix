@@ -78,8 +78,12 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
+    kitty.terminfo
   ];
+
+  environment.extraInit = ''
+    export TERMINFO_DIRS="/run/current-system/sw/share/terminfo:$TERMINFO_DIRS"
+  '';
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
