@@ -84,6 +84,11 @@
   environment.extraInit = ''
     export TERMINFO_DIRS="/run/current-system/sw/share/terminfo:$TERMINFO_DIRS"
   '';
+
+  nix.settings.trusted-users = [
+    "root"
+    "jun2040"
+  ];
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
