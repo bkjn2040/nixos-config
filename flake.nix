@@ -26,6 +26,7 @@
       nixosConfigurations = {
         thinkpad = mkHost "thinkpad";
         workstation = mkHost "workstation";
+        satellite = mkHost "satellite";
       };
     };
 }
