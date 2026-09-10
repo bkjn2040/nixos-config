@@ -16,6 +16,8 @@
     ../../modules/system/secure-boot
   ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   networking = {
     hostName = "nixos";
     extraHosts = ''
