@@ -10,10 +10,12 @@
     };
 
     nixCats.url = ./config;
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, nixos-hardware, ... }@inputs:
     let
       mkHost = hostName:
         nixpkgs.lib.nixosSystem {
@@ -27,6 +29,15 @@
         thinkpad = mkHost "thinkpad";
         workstation = mkHost "workstation";
         satellite = mkHost "satellite";
+        rspi4 = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./hosts/rspi4/configuration.nix
+          ];
+        };
       };
     };
 }
