@@ -20,9 +20,6 @@
 
   networking = {
     hostName = "nixos";
-    extraHosts = ''
-      192.168.1.167 homelab
-    '';
   };
 
   users.users.jun2040.extraGroups = [
