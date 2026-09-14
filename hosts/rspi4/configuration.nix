@@ -35,6 +35,7 @@
 
     settings = {
       PasswordAuthentication = false;
+      PubkeyAuthentication = true;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
     };
@@ -44,8 +45,9 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
 
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQ9+D2TxY254YeFa0qGio5ck/QGZ/j4u4vdXmgMrVsM isy.junny@gmail.com"
+    openssh.authorizedKeys.keyFiles = [
+      ../../modules/services/ssh/keys/id_ed25519_personal_thinkpad.pub
+      ../../modules/services/ssh/keys/id_ed25519_personal_workstation.pub
     ];
   };
 
