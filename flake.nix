@@ -38,6 +38,11 @@
             ./hosts/rspi4/configuration.nix
           ];
         };
+	thinkcentre = nixpkgs.lib.nixosSystem {
+	  system = "x86_64-linux";
+	    specialArgs = { inherit inputs; };
+	    modules = [ ./hosts/thinkcentre/configuration.nix ];
+	};
       };
     };
 }
