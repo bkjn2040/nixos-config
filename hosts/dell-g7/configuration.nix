@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/services/minecraft-server
       ../../modules/services/tailscale
       ../../modules/termdef/kitty.nix
     ];
@@ -169,4 +170,3 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-

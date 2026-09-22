@@ -12,6 +12,11 @@
     nixCats.url = ./config;
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
