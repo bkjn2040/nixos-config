@@ -14,5 +14,7 @@
 
   networking.hostName = "thinkpad";
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   system.stateVersion = "25.05";
 }

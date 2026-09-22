@@ -38,6 +38,16 @@
             ./hosts/rspi4/configuration.nix
           ];
         };
+        thinkcentre = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/thinkcentre/configuration.nix ];
+        };
+        dell-g7 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/dell-g7/configuration.nix ];
+        };
       };
     };
 }
