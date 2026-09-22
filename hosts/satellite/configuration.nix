@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/services/tailscale
+      ../../modules/termdef/kitty.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -78,12 +79,7 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    kitty.terminfo
   ];
-
-  environment.extraInit = ''
-    export TERMINFO_DIRS="/run/current-system/sw/share/terminfo:$TERMINFO_DIRS"
-  '';
 
   nix.settings.trusted-users = [
     "root"

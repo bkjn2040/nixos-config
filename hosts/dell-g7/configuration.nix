@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/services/tailscale
+      ../../modules/termdef/kitty.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -92,12 +93,7 @@
     git
     curl
     ethtool
-    kitty.terminfo
   ];
-
-  environment.extraInit = ''
-    export TERMINFO_DIRS="/run/current-system/sw/share/terminfo:$TERMINFO_DIRS"
-  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

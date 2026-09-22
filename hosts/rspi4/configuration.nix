@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/services/tailscale
+    ../../modules/termdef/kitty.nix
   ];
 
   nix.settings.trusted-users = [
@@ -60,12 +61,7 @@
     curl
     ethtool
     wakeonlan
-    kitty.terminfo
   ];
-
-  environment.extraInit = ''
-    export TERMINFO_DIRS="/run/current-system/sw/share/terminfo:$TERMINFO_DIRS"
-  '';
 
   # Helpful because your Pi 4 has 2 GB RAM.
   zramSwap.enable = true;
