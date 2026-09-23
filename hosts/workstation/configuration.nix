@@ -4,30 +4,24 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/core
-    ../../modules/core/fcitx5
-    ../../modules/desktop/hyprland
-    ../../modules/programs/neovim
     ../../modules/hardware/amd-gpu
     ../../modules/hardware/workstation-audio
-    ../../modules/localisation/korean-fonts
-    ../../modules/services/ollama-rocm
-    ../../modules/services/tailscale
-    ../../modules/system/secure-boot
+
+    ../../modules/users/jun2040
+
+    ../../modules/profiles/interactive.nix
+
+    ../../modules/roles/audio-workstation.nix
+    ../../modules/roles/aarch64-emulator.nix
+
+    ../../modules/features/fcitx5
+    ../../modules/features/localisation/korean-fonts
+    ../../modules/features/services/ollama-rocm
+    ../../modules/features/system/secure-boot
   ];
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  networking.hostName = "nixos";
 
-  networking = {
-    hostName = "nixos";
-  };
-
-  users.users.jun2040.extraGroups = [
-    "audio"
-    "jackaudio"
-    "realtime"
-    "wireshark"
-  ];
-
+  # DO NOT CHANGE
   system.stateVersion = "25.11";
 }

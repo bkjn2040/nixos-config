@@ -4,17 +4,19 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/core
-    ../../modules/core/fcitx5
-    ../../modules/desktop/hyprland
-    ../../modules/programs/neovim
-    ../../modules/services/tailscale
-    ../../modules/system/secure-boot
+    ../../modules/users/jun2040
+
+    ../../modules/profiles/interactive.nix
+
+    ../../modules/roles/aarch64-emulator.nix
+
+    ../../modules/features/fcitx5
+    ../../modules/features/desktop/hyprland
+    ../../modules/features/system/secure-boot
   ];
 
   networking.hostName = "thinkpad";
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
+  # DO NOT CHANGE
   system.stateVersion = "25.05";
 }

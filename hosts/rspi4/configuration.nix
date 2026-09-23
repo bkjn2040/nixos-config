@@ -2,13 +2,11 @@
 
 {
   imports = [
-    ../../modules/services/tailscale
-    ../../modules/termdef/kitty.nix
-  ];
+    ../../modules/users/jun2040
 
-  nix.settings.trusted-users = [
-    "root"
-    "jun2040"
+    ../../modules/access/server-nodes.nix
+
+    ../../modules/profiles/headless.nix
   ];
 
   boot.initrd.availableKernelModules = {
@@ -30,35 +28,7 @@
     useDHCP = true;
   };
 
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
-
-    settings = {
-      PasswordAuthentication = false;
-      PubkeyAuthentication = true;
-      KbdInteractiveAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
-
-  users.users.jun2040 = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-
-    openssh.authorizedKeys.keyFiles = [
-      ../../modules/services/ssh/keys/id_ed25519_personal_thinkpad.pub
-      ../../modules/services/ssh/keys/id_ed25519_personal_workstation.pub
-    ];
-  };
-
-  # SSH-key possession effectively controls administrative access.
-  security.sudo.wheelNeedsPassword = false;
-
   environment.systemPackages = with pkgs; [
-    git
-    vim
-    curl
     ethtool
     wakeonlan
   ];
@@ -66,25 +36,11 @@
   # Helpful because your Pi 4 has 2 GB RAM.
   zramSwap.enable = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = true;
-    };
-  };
-
   hardware.raspberry-pi.firmware = {
     enable = true;
     uboot.enable = true;
   };
 
+  # DO NOT CHANGE
   system.stateVersion = "26.05";
 }
