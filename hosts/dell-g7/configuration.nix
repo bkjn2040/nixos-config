@@ -11,6 +11,8 @@
 
       ../../modules/profiles/headless.nix
 
+      ../../modules/hardware/nvidia-gpu
+
       ../../modules/features/services/minecraft-server
     ];
 
