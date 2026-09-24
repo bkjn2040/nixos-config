@@ -6,7 +6,7 @@
 
     ../features/desktop/hyprland
 
-    ../features/networkmanager.nix
+    ../features/networking/networkmanager.nix
     ../features/system/automatic-timezone.nix
   ];
 
