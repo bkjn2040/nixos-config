@@ -7,6 +7,8 @@
 
       ../../modules/hardware/nvidia-gpu
 
+      ../../modules/boot/systemd-boot.nix
+
       ../../modules/users/jun2040
 
       ../../modules/access/server-nodes.nix
@@ -17,10 +19,6 @@
 
       ../../modules/features/services/minecraft-server
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "dell-g7"; # Define your hostname.
 

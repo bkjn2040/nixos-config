@@ -7,8 +7,8 @@
 
   boot = {
     loader = {
-      efi.canTouchEfiVariables = true;
       systemd-boot.enable = lib.mkForce false;
+      efi.canTouchEfiVariables = true;
     };
     lanzaboote = {
       enable = true;

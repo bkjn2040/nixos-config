@@ -4,6 +4,8 @@
   imports = [
     ./hardware-configuration.nix
 
+    ../../modules/boot/secure-boot.nix
+
     ../../modules/users/jun2040
 
     ../../modules/profiles/interactive.nix
@@ -12,7 +14,6 @@
 
     ../../modules/features/fcitx5
     ../../modules/features/desktop/hyprland
-    ../../modules/features/system/secure-boot
   ];
 
   networking.hostName = "thinkpad";

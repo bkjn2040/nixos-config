@@ -5,6 +5,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
+      ../../modules/boot/systemd-boot.nix
+
       ../../modules/users/jun2040
 
       ../../modules/access/server-nodes.nix
@@ -13,10 +15,6 @@
 
       ../../modules/roles/service-manager.nix
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "thinkcentre"; # Define your hostname.
 
