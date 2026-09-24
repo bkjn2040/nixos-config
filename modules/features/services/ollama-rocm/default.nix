@@ -7,7 +7,7 @@
       package = pkgs.ollama-rocm;
       host = "0.0.0.0";
       port = 11434;
-      loadModels = [ "qwen2.5:14b" ];
+      loadModels = [ "qwen3.5:9b" ];
       openFirewall = true;
     };
     resolved.enable = true;
