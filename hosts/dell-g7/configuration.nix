@@ -11,7 +11,9 @@
 
       ../../modules/users/jun2040
 
-      ../../modules/access/server-nodes.nix
+      ../../modules/access/authorized-keys.nix
+      ../../modules/access/nix-trusted-users.nix
+      ../../modules/access/allow-sudo-without-password.nix
 
       ../../modules/profiles/headless.nix
 
