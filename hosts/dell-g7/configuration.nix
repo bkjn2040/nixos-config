@@ -5,13 +5,15 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
+      ../../modules/hardware/nvidia-gpu
+
       ../../modules/users/jun2040
 
       ../../modules/access/server-nodes.nix
 
       ../../modules/profiles/headless.nix
 
-      ../../modules/hardware/nvidia-gpu
+      ../../modules/roles/hardware-monitor.nix
 
       ../../modules/features/services/minecraft-server
     ];
