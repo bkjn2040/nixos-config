@@ -13,7 +13,6 @@
     ../../modules/roles/aarch64-emulator.nix
 
     ../../modules/features/fcitx5
-    ../../modules/features/desktop/hyprland
   ];
 
   networking.hostName = "thinkpad";
