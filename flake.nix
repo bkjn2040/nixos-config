@@ -9,8 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixCats.url = ./config;
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nix-minecraft = {
@@ -22,7 +20,7 @@
   outputs =
     { nixpkgs, nixos-hardware, ... }@inputs:
     let
-      mkHost = hostName:
+      mkx8664Host = hostName:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
@@ -31,9 +29,12 @@
     in
     {
       nixosConfigurations = {
-        thinkpad = mkHost "thinkpad";
-        workstation = mkHost "workstation";
-        satellite = mkHost "satellite";
+        thinkpad = mkx8664Host "thinkpad";
+        workstation = mkx8664Host "workstation";
+        satellite = mkx8664Host "satellite";
+        thinkcentre = mkx8664Host "thinkcentre";
+        dell-g7 = mkx8664Host "dell-g7";
+
         rspi4 = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
 
@@ -42,16 +43,6 @@
             nixos-hardware.nixosModules.raspberry-pi-4
             ./hosts/rspi4/configuration.nix
           ];
-        };
-        thinkcentre = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/thinkcentre/configuration.nix ];
-        };
-        dell-g7 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/dell-g7/configuration.nix ];
         };
       };
     };
