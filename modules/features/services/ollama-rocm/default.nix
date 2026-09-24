@@ -10,6 +10,5 @@
       loadModels = [ "qwen3.5:9b" ];
       openFirewall = true;
     };
-    resolved.enable = true;
   };
 }
