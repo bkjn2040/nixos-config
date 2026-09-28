@@ -19,6 +19,7 @@
     ../../modules/features/fcitx5
     ../../modules/features/localisation/korean-fonts
     ../../modules/features/services/ollama-rocm
+    ../../modules/features/services/open-webui
   ];
 
   networking.hostName = "nixos";
