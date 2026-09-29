@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "caldav-mcp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789160940,
+        "narHash": "sha256-5KR7L4zRflDUDFk4qhG/xOSY8pbVS5oDxCQolXUBeiU=",
+        "owner": "gelse",
+        "repo": "caldav-mcp",
+        "rev": "ce880c5ed93f1435b4f63f33afb584b3ffea2815",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gelse",
+        "repo": "caldav-mcp",
+        "rev": "ce880c5ed93f1435b4f63f33afb584b3ffea2815",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1785782307,
@@ -163,6 +180,7 @@
     },
     "root": {
       "inputs": {
+        "caldav-mcp": "caldav-mcp",
         "lanzaboote": "lanzaboote",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",

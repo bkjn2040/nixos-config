@@ -6,8 +6,8 @@
 
     settings = {
       server.hosts = [
-        "127.0.0.1:5232"
-        "[::1]:5232"
+        "0.0.0.0:5232"
+        "[::]:5232"
       ];
 
       auth = {
@@ -44,4 +44,6 @@
     "d /var/lib/radicale 0750 radicale radicale - -"
     "f /var/lib/radicale/users 0640 radicale radicale - -"
   ];
+
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5232 ];
 }

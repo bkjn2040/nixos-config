@@ -15,6 +15,11 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    caldav-mcp = {
+      url = "github:gelse/caldav-mcp/ce880c5ed93f1435b4f63f33afb584b3ffea2815";
+      flake = false;
+    };
   };
 
   outputs =
