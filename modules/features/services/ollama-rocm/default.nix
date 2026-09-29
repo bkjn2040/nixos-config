@@ -9,6 +9,10 @@
       port = 11434;
       loadModels = [ "qwen3.5:9b" ];
       openFirewall = true;
+
+      # Tool schemas for MCP integrations can exceed Ollama's 4096-token
+      # default on GPUs with less than 24 GiB of VRAM.
+      environmentVariables.OLLAMA_CONTEXT_LENGTH = "16384";
     };
   };
 
