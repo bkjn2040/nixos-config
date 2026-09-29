@@ -16,6 +16,8 @@
       ../../modules/profiles/headless.nix
 
       ../../modules/roles/service-manager.nix
+
+      ../../modules/features/services/radicale
     ];
 
   networking.hostName = "thinkcentre"; # Define your hostname.
