@@ -20,8 +20,11 @@
     ../../modules/features/localisation/korean-fonts
     ../../modules/features/services/caldav-mcp
     ../../modules/features/services/ollama-rocm
+    ../../modules/features/services/odysseus
     ../../modules/features/services/open-webui
   ];
+
+  services.odysseus.enable = true;
 
   networking.hostName = "nixos";
 
