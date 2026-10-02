@@ -18,6 +18,7 @@
       ../../modules/roles/service-manager.nix
 
       ../../modules/features/services/radicale
+      ../../modules/features/services/linkwarden
     ];
 
   networking.hostName = "thinkcentre"; # Define your hostname.
