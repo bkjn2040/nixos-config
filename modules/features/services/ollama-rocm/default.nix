@@ -7,7 +7,10 @@
       package = pkgs.ollama-rocm;
       host = "0.0.0.0";
       port = 11434;
-      loadModels = [ "qwen3.5:9b" ];
+      loadModels = [
+        "qwen3.5:9b"
+        "qwen3.8:27b"
+      ];
       openFirewall = true;
 
       # Tool schemas for MCP integrations can exceed Ollama's 4096-token
