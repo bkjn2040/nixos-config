@@ -9,6 +9,10 @@
         fcitx5-hangul
         fcitx5-gtk
       ];
+      settings.globalOptions.Behavior = {
+        ActiveByDefault = false;
+        PreloadInputMethod = true;
+      };
       settings.inputMethod = {
         GroupOrder."0" = "Default";
         "Groups/0" = {
@@ -21,6 +25,21 @@
         "Groups/0/Items/2".Name = "hangul";
       };
       ignoreUserConfig = true;
+    };
+  };
+
+  systemd.user.services.fcitx5 = {
+    description = "Fcitx5 input method framework";
+    documentation = [ "man:fcitx5(1)" ];
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    unitConfig.ConditionEnvironment = "WAYLAND_DISPLAY";
+
+    serviceConfig = {
+      ExecStart = "${config.i18n.inputMethod.package}/bin/fcitx5 -D --replace";
+      Restart = "on-failure";
+      RestartSec = 1;
     };
   };
 }
