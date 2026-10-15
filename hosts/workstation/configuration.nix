@@ -22,6 +22,8 @@
     ../../modules/features/services/ollama-rocm
     ../../modules/features/services/odysseus
     # ../../modules/features/services/open-webui
+
+    ../../modules/features/networking/kdeconnect.nix
   ];
 
   services.odysseus.enable = true;
